@@ -8,6 +8,7 @@ import Completed from './Pages/Completed';
 import Settings from './Pages/Settings';
 import Home from './Pages/Home';
 import Add from './Pages/Add';
+import Tasks from './Pages/Tasks';
 
 const routerVariables = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const routerVariables = createBrowserRouter([
       {
         path: "/settings",
         element: <Settings></Settings>,
+      },
+      {
+        path: "/tasks/:resId",
+        element: <Tasks></Tasks>,
       },
       {
         path: "*",
