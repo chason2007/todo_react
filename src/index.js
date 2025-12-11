@@ -9,11 +9,17 @@ import Settings from './Pages/Settings';
 import Home from './Pages/Home';
 import Add from './Pages/Add';
 import Tasks from './Pages/Tasks';
+import Login from './Pages/Login';
+import ProtectedRoute from './Components/ProtectedRoute';
 
 const routerVariables = createBrowserRouter([
   {
+    path: "/login",
+    element: <Login></Login>,
+  },
+  {
     path: "/",
-    element: <App></App>,
+    element: <ProtectedRoute><App></App></ProtectedRoute>,
     children: [
       {
         path: "/",

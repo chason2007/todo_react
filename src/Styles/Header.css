@@ -1,0 +1,55 @@
+.header {
+  display: flex;
+  border-bottom: 7px solid black;
+  padding: 10px 30px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header img {
+  width: 80px;
+  height: 80px;
+}
+
+.links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.links a {
+  text-decoration: none;
+  color: black;
+  font-size: 24px;
+}
+
+.links a.active {
+  color: red;
+  font-weight: bold;
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  color: black;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Dark Mode Styles */
+body.dark-mode .header {
+  background-color: #111827;
+  border-bottom-color: #374151;
+}
+
+body.dark-mode .links a {
+  color: #f9fafb;
+}
+
+body.dark-mode .links a.active {
+  color: #3b82f6;
+}
+
+body.dark-mode .logout-button {
+  color: #f9fafb;
+}

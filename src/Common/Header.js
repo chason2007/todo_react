@@ -1,6 +1,14 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
+import '../Styles/Header.css';
 
 const Header = () => {
+    const navigate = useNavigate();
+    
+    const handleLogout = () => {
+        localStorage.removeItem('isAuthenticated');
+        navigate('/login');
+    };
+    
     return(
         <header className="header">
         <NavLink to={"/"}><img src="..\images\logo.png" alt="logo"></img></NavLink>
@@ -9,6 +17,7 @@ const Header = () => {
           <NavLink to={"/add"}>Add</NavLink>
           <NavLink to={"/completed"}>Completed Tasks</NavLink>
           <NavLink to={"/settings"}>Settings</NavLink>
+          <button onClick={handleLogout} className="logout-button">Logout</button>
         </div>
       </header>
     );

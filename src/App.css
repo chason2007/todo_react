@@ -10,37 +10,7 @@ p{
   text-align: center;
 }
 
-.header{
-  display: flex;
-  border-bottom: 7px solid black;
-  padding: 10px 30px;
-  justify-content: space-between;
-  align-items: center;
-}
 
-.header img{
-  width: 80px;
-  height: 80px;
-}
-
-.links{
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  align-items: center;
-  width: 20%;
-}
-
-.links a{
-  text-decoration: none;
-  color: black;
-  font-size: 24px;
-} 
-
-.links a.active{
-  color: red;
-  font-weight: bold;
-}
 
 h1{
   font-size: 48px;
