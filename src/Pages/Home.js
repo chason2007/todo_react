@@ -8,22 +8,15 @@ const Home = () => {
     const [tasks, setTasks] = useState([]);
     
     useEffect(() => {
-        // Check localStorage first, then fallback to JSON file
-        const storedTasks = localStorage.getItem('tasks');
-        const tasksCleared = localStorage.getItem('tasksCleared');
+        // Clear the tasksCleared flag and load fresh data
+        localStorage.removeItem('tasksCleared');
         
-        if (tasksCleared === 'true') {
-            setTasks([]);
-        } else if (storedTasks) {
-            setTasks(JSON.parse(storedTasks));
-        } else {
-            fetch('/Tasks.json')
-                .then(res => res.json())
-                .then(data => {
-                    setTasks(data);
-                    localStorage.setItem('tasks', JSON.stringify(data));
-                });
-        }
+        fetch('/Tasks.json')
+            .then(res => res.json())
+            .then(data => {
+                setTasks(data);
+                localStorage.setItem('tasks', JSON.stringify(data));
+            });
     }, []);
     
     // Listen for storage changes to refresh tasks

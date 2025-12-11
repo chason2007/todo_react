@@ -35,18 +35,37 @@ const Settings = () => {
                 
                 <div className="setting-item">
                     <div className="setting-label">Dark Mode</div>
-                    <div className="setting-description">Toggle between light and dark theme</div>
-                    <button 
-                        className="toggle-button" 
-                        onClick={toggleDarkMode}
-                    >
-                        {darkMode ? 'Disable Dark Mode' : 'Enable Dark Mode'}
-                    </button>
+                    <div>
+                        <label>
+                            <input 
+                                type="radio" 
+                                name="theme" 
+                                checked={!darkMode} 
+                                onChange={() => {
+                                    setDarkMode(false);
+                                    localStorage.setItem('darkMode', false);
+                                    document.body.classList.remove('dark-mode');
+                                }}
+                            />
+                            Light
+                        </label>
+                        <label style={{marginLeft: '20px'}}>
+                            <input 
+                                type="radio" 
+                                name="theme" 
+                                checked={darkMode} 
+                                onChange={() => {
+                                    setDarkMode(true);
+                                    localStorage.setItem('darkMode', true);
+                                    document.body.classList.add('dark-mode');
+                                }}
+                            />
+                            Dark
+                        </label>
+                    </div>
                 </div>
 
                 <div className="setting-item">
-                    <div className="setting-label">Clear All Tasks</div>
-                    <div className="setting-description">Remove all tasks from your list permanently</div>
                     <button 
                         className="clear-button" 
                         onClick={clearAllTasks}
