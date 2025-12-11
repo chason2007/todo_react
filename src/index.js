@@ -31,6 +31,10 @@ const routerVariables = createBrowserRouter([
         element: <Settings></Settings>,
       },
       {
+        path: "/tasks/:resId",
+        element: <div><h1>Task Details Page - Under Construction</h1></div>,
+      },
+      {
         path: "*",
         element: <div><h1>404 Page Not Found. Please check your URL</h1></div>, 
       }
