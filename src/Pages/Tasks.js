@@ -3,7 +3,7 @@ const Tasks = () => {
     const { resId } = useParams();
     return(
         <div>
-            <h1>Tasks page will be {resId}</h1>
+            <h3>Tasks page will be {resId}</h3>
         </div>
     );
 }
