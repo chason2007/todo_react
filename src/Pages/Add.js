@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import '../Styles/Add.css';
 
 const Add = () => {
     const [formData, setFormData] = useState({
@@ -49,67 +50,51 @@ const Add = () => {
     };
 
     return (
-        <div style={{ padding: '32px 24px', backgroundColor: '#f9fafb', minHeight: '100vh' }}>
-            <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-                <div style={{ marginBottom: '40px' }}>
-                    <h1 style={{ color: '#111827', marginBottom: '8px', fontSize: '32px', fontWeight: '700' }}>Add New Task</h1>
+        <div className="add-container">
+            <div className="add-content">
+                <div className="add-header">
+                    <h1 className="add-title">Add New Task</h1>
                 </div>
-            <form onSubmit={handleSubmit}>
-                <div style={{ marginBottom: '1rem' }}>
-                    <label>Title:</label>
-                    <input
-                        type="text"
-                        name="title"
-                        value={formData.title}
-                        onChange={handleChange}
-                        required
-                        style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
-                    />
-                </div>
-                
-                <div style={{ marginBottom: '1rem' }}>
-                    <label>Description:</label>
-                    <textarea
-                        name="description"
-                        value={formData.description}
-                        onChange={handleChange}
-                        required
-                        style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem', height: '100px' }}
-                    />
-                </div>
-                
-                <div style={{ marginBottom: '1rem' }}>
-                    <label>Due Date:</label>
-                    <input
-                        type="date"
-                        name="dueDate"
-                        value={formData.dueDate}
-                        onChange={handleChange}
-                        required
-                        style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
-                    />
-                </div>
-                
-                <button 
-                    type="submit"
-                    style={{ 
-                        backgroundColor: '#28a745', 
-                        color: 'white', 
-                        padding: '1rem 2rem', 
-                        border: 'none', 
-                        borderRadius: '8px',
-                        cursor: 'pointer',
-                        fontSize: '1.1rem',
-                        fontWeight: '600',
-                        boxShadow: '0 2px 8px rgba(40, 167, 69, 0.3)',
-                        transition: 'all 0.2s ease'
-                    }}
-                    onMouseEnter={(e) => e.target.style.backgroundColor = '#218838'}
-                    onMouseLeave={(e) => e.target.style.backgroundColor = '#28a745'}
-                >
-                    Add Task
-                </button>
-            </form>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label className="form-label">Title:</label>
+                        <input
+                            type="text"
+                            name="title"
+                            value={formData.title}
+                            onChange={handleChange}
+                            required
+                            className="form-input"
+                        />
+                    </div>
+                    
+                    <div className="form-group">
+                        <label className="form-label">Description:</label>
+                        <textarea
+                            name="description"
+                            value={formData.description}
+                            onChange={handleChange}
+                            required
+                            className="form-textarea"
+                        />
+                    </div>
+                    
+                    <div className="form-group">
+                        <label className="form-label">Due Date:</label>
+                        <input
+                            type="date"
+                            name="dueDate"
+                            value={formData.dueDate}
+                            onChange={handleChange}
+                            required
+                            className="form-input"
+                        />
+                    </div>
+                    
+                    <button type="submit" className="submit-button">
+                        Add Task
+                    </button>
+                </form>
             </div>
         </div>
     );
