@@ -1,0 +1,33 @@
+.home-container {
+    padding: 32px 24px;
+    background-color: #f9fafb;
+    min-height: 100vh;
+}
+
+.home-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.home-header {
+    margin-bottom: 40px;
+}
+
+.home-title {
+    color: #111827;
+    margin-bottom: 8px;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.home-subtitle {
+    color: #6b7280;
+    font-size: 16px;
+    margin: 0;
+}
+
+.tasks-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

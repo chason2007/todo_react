@@ -1,0 +1,32 @@
+.task-card {
+    border: none;
+    border-radius: 16px;
+    padding: 24px;
+    background-color: white;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.task-card.completed {
+    background-color: whitesmoke;
+}
+
+.task-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.task-card-title {
+    margin: 0 0 12px 0;
+    color: #1f2937;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.task-card-due {
+    margin: 0;
+    color: #6b7280;
+    font-size: 14px;
+    font-weight: 500;
+}

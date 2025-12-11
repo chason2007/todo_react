@@ -1,24 +1,22 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-const Tasks = () => {
-    const { resId } = useParams();
+const Task = () => {
+    const { id } = useParams();
     const [task, setTask] = useState(null);
     
     useEffect(() => {
-        if (resId) {
-            fetch('/Tasks.json')
-                .then(res => res.json())
-                .then(data => {
-                    const foundTask = data.find(t => t.id === resId);
-                    setTask(foundTask);
-                });
-        }
-    }, [resId]);
+        fetch('/Tasks.json')
+            .then(res => res.json())
+            .then(data => {
+                const foundTask = data.find(t => t.id === id);
+                setTask(foundTask);
+            });
+    }, [id]);
     
     if (!task) return <div>Loading...</div>;
     
-    return(
+    return (
         <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
             <h1>{task.title}</h1>
             <div style={{ fontSize: '1.2rem', lineHeight: '1.6' }}>
@@ -30,4 +28,4 @@ const Tasks = () => {
     );
 }
 
-export default Tasks;
+export default Task;
