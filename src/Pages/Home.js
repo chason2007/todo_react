@@ -10,8 +10,11 @@ const Home = () => {
     useEffect(() => {
         // Check localStorage first, then fallback to JSON file
         const storedTasks = localStorage.getItem('tasks');
+        const tasksCleared = localStorage.getItem('tasksCleared');
         
-        if (storedTasks) {
+        if (tasksCleared === 'true') {
+            setTasks([]);
+        } else if (storedTasks) {
             setTasks(JSON.parse(storedTasks));
         } else {
             fetch('/Tasks.json')

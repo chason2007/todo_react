@@ -58,3 +58,23 @@
 .submit-button:hover {
     background-color: #218838;
 }
+
+/* Dark Mode Styles */
+body.dark-mode .add-container {
+    background-color: #1f2937;
+}
+
+body.dark-mode .add-title {
+    color: #f9fafb;
+}
+
+body.dark-mode .form-label {
+    color: #f9fafb;
+}
+
+body.dark-mode .form-input,
+body.dark-mode .form-textarea {
+    background-color: #374151;
+    color: #f9fafb;
+    border: 1px solid #4b5563;
+}

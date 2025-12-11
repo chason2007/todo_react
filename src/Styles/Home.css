@@ -31,3 +31,16 @@
     flex-direction: column;
     gap: 16px;
 }
+
+/* Dark Mode Styles */
+body.dark-mode .home-container {
+    background-color: #1f2937;
+}
+
+body.dark-mode .home-title {
+    color: #f9fafb;
+}
+
+body.dark-mode .home-subtitle {
+    color: #d1d5db;
+}

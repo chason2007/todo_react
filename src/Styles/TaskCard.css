@@ -4,29 +4,53 @@
     padding: 24px;
     background-color: white;
     cursor: pointer;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .task-card.completed {
-    background-color: whitesmoke;
+    background-color: lightgreen;
 }
 
 .task-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 25px black;
 }
 
 .task-card-title {
     margin: 0 0 12px 0;
-    color: #1f2937;
-    font-size: 18px;
-    font-weight: 600;
+    color: black;
+    font-size: 24px;
+    font-weight: normal;
 }
 
 .task-card-due {
     margin: 0;
-    color: #6b7280;
-    font-size: 14px;
+    color: black;
+    font-size: 18px;
     font-weight: 500;
+}
+
+/* Dark Mode */
+body.dark-mode .task-card {
+    background-color: #374151;
+    box-shadow: 0 1px 3px rgba(255,255,255,0.1);
+}
+
+body.dark-mode .task-card.completed {
+    background-color: #065f46;
+}
+
+body.dark-mode .task-card:hover {
+    box-shadow: 0 8px 25px rgba(255,255,255,0.15);
+}
+
+body.dark-mode .task-card-title {
+    color: #f9fafb;
+}
+
+body.dark-mode .task-card-due {
+    color: #d1d5db;
 }
