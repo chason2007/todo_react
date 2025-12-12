@@ -4,7 +4,18 @@ import "../Styles/Add.css";
 
 const Add = () => {
   const navigate = useNavigate();
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      title: "task name",
+      description: "task description",
+      dueDate: new Date().toISOString().split("T")[0],
+    },
+  });
 
   const onSubmitHandler = (data) => {
     const newTask = {
@@ -34,17 +45,33 @@ const Add = () => {
             <label className="form-label">Title:</label>
             <input
               type="text"
-              {...register("title", { required: true })}
+              {...register("title", {
+                required: "Task name required",
+                minLength: { value: 3, message: "Minimum 3 characters" },
+              })}
               className="form-input"
             />
+            {errors.title && (
+              <span className="error-message">
+                <i>{errors.title.message}</i>
+              </span>
+            )}
           </div>
 
           <div className="add-form">
             <label className="form-label">Description:</label>
             <textarea
-              {...register("description", { required: true })}
+              {...register("description", {
+                required: "Add task description",
+                minLength: { value: 5, message: "Minimum 5 characters" },
+              })}
               className="form-textarea"
             />
+            {errors.description && (
+              <span className="error-message">
+                <i>{errors.description.message}</i>
+              </span>
+            )}
           </div>
 
           <div className="add-form">
