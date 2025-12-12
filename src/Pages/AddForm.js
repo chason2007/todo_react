@@ -1,20 +1,17 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import "../Styles/Add.css";
 
 const Add = () => {
   const navigate = useNavigate();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [dueDate, setDueDate] = useState("");
+  const { register, handleSubmit, reset } = useForm();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const onSubmitHandler = (data) => {
     const newTask = {
-      id: Date.now().toString(),
-      title: title,
-      description: description,
-      dueDate: dueDate,
+      id: Math.floor(Math.random() * 1000000).toString(),
+      title: data.title,
+      description: data.description,
+      dueDate: data.dueDate,
       completed: false,
     };
     const existingTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
@@ -22,10 +19,7 @@ const Add = () => {
     localStorage.setItem("tasks", JSON.stringify(existingTasks));
 
     alert("Task added!");
-
-    setTitle("");
-    setDescription("");
-    setDueDate("");
+    reset();
     navigate("/");
   };
 
@@ -35,25 +29,21 @@ const Add = () => {
         <div className="add-header">
           <h1 className="add-title">Add New Task</h1>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmitHandler)}>
           <div className="add-form">
             <label className="form-label">Title:</label>
             <input
               type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              {...register("title", { required: true })}
               className="form-input"
-              required
             />
           </div>
 
           <div className="add-form">
             <label className="form-label">Description:</label>
             <textarea
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              {...register("description", { required: true })}
               className="form-textarea"
-              required
             />
           </div>
 
@@ -61,10 +51,8 @@ const Add = () => {
             <label className="form-label">Due Date:</label>
             <input
               type="date"
-              value={dueDate}
-              onChange={(e) => setDueDate(e.target.value)}
+              {...register("dueDate", { required: true })}
               className="form-input"
-              required
             />
           </div>
 
