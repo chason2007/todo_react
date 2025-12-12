@@ -1,18 +1,12 @@
-import { useState } from "react";
+import { useForm } from 'react-hook-form';
 import { useNavigate } from "react-router-dom";
 import '../Styles/Add.css';
 
 const Add = () => {
     const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-        title: '',
-        description: '',
-        dueDate: ''
-    });
+    const { register, handleSubmit, reset } = useForm();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        
+    const onSubmit = async (data) => {
         // Get existing tasks from localStorage or fetch from JSON
         let tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
         
@@ -24,9 +18,9 @@ const Add = () => {
         // Create new task
         const newTask = {
             id: String(Date.now()),
-            title: formData.title,
-            description: formData.description,
-            dueDate: formData.dueDate,
+            title: data.title,
+            description: data.description,
+            dueDate: data.dueDate,
             completed: false
         };
         
@@ -37,17 +31,10 @@ const Add = () => {
         alert('Task added successfully!');
         
         // Reset form
-        setFormData({ title: '', description: '', dueDate: '' });
+        reset();
         
         // Navigate to home to see the new task
         navigate('/');
-    };
-
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
     };
 
     return (
@@ -56,38 +43,29 @@ const Add = () => {
                 <div className="add-header">
                     <h1 className="add-title">Add New Task</h1>
                 </div>
-                <form onSubmit={handleSubmit}>
-                    <div className="form-group">
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="add-form">
                         <label className="form-label">Title:</label>
                         <input
                             type="text"
-                            name="title"
-                            value={formData.title}
-                            onChange={handleChange}
-                            required
+                            {...register('title', { required: true })}
                             className="form-input"
                         />
                     </div>
                     
-                    <div className="form-group">
+                    <div className="add-form">
                         <label className="form-label">Description:</label>
                         <textarea
-                            name="description"
-                            value={formData.description}
-                            onChange={handleChange}
-                            required
+                            {...register('description', { required: true })}
                             className="form-textarea"
                         />
                     </div>
                     
-                    <div className="form-group">
+                    <div className="add-form">
                         <label className="form-label">Due Date:</label>
                         <input
                             type="date"
-                            name="dueDate"
-                            value={formData.dueDate}
-                            onChange={handleChange}
-                            required
+                            {...register('dueDate', { required: true })}
                             className="form-input"
                         />
                     </div>
