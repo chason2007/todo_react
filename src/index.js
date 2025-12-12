@@ -7,7 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Completed from './Pages/Completed';
 import Settings from './Pages/Settings';
 import Home from './Pages/Home';
-import Add from './Pages/Add';
+import AddForm from './Pages/AddForm';
 import Tasks from './Pages/Tasks';
 import Login from './Pages/Login';
 import ProtectedRoute from './Components/ProtectedRoute';
@@ -27,7 +27,7 @@ const routerVariables = createBrowserRouter([
       },
       {
         path: "/add",
-        element: <Add></Add>,
+        element: <AddForm></AddForm>,
       },
       {
         path: "/completed",

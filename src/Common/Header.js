@@ -3,6 +3,7 @@ import '../Styles/Header.css';
 
 const Header = () => {
     const navigate = useNavigate();
+    const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
     
     const handleLogout = () => {
         localStorage.removeItem('isAuthenticated');
@@ -13,11 +14,15 @@ const Header = () => {
         <header className="header">
         <NavLink to={"/"}><img src="..\images\logo.png" alt="logo"></img></NavLink>
         <div className="links">
-          <NavLink to={"/"}>Home</NavLink>
-          <NavLink to={"/add"}>Add</NavLink>
-          <NavLink to={"/completed"}>Completed Tasks</NavLink>
-          <NavLink to={"/settings"}>Settings</NavLink>
-          <button onClick={handleLogout} className="logout-button">Logout</button>
+          {isAuthenticated && (
+            <>
+              <NavLink to={"/"}>Home</NavLink>
+              <NavLink to={"/add"}>Add</NavLink>
+              <NavLink to={"/completed"}>Completed Tasks</NavLink>
+              <NavLink to={"/settings"}>Settings</NavLink>
+              <button onClick={handleLogout} className="logout-button">Logout</button>
+            </>
+          )}
         </div>
       </header>
     );

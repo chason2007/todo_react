@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import '../Styles/Add.css';
 
 const Add = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         title: '',
         description: '',
@@ -39,7 +40,7 @@ const Add = () => {
         setFormData({ title: '', description: '', dueDate: '' });
         
         // Navigate to home to see the new task
-        setTimeout(() => window.location.reload(), 100);
+        navigate('/');
     };
 
     const handleChange = (e) => {
