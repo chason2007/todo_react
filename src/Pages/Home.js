@@ -8,16 +8,29 @@ const Home = () => {
     const [tasks, setTasks] = useState([]);
     
     useEffect(() => {
-        // Clear the tasksCleared flag and load fresh data
-        localStorage.removeItem('tasksCleared');
+        const storedTasks = localStorage.getItem('tasks');
+        const tasksCleared = localStorage.getItem('tasksCleared');
         
-        fetch('/Tasks.json')
-            .then(res => res.json())
-            .then(data => {
-                setTasks(data);
-                localStorage.setItem('tasks', JSON.stringify(data));
-            });
+        if (storedTasks && !tasksCleared) {
+            setTasks(JSON.parse(storedTasks));
+        } else {
+            localStorage.removeItem('tasksCleared');
+            fetch('/Tasks.json')
+                .then(res => res.json())
+                .then(data => {
+                    setTasks(data);
+                    localStorage.setItem('tasks', JSON.stringify(data));
+                });
+        }
     }, []);
+    
+    const handleToggleComplete = (taskId) => {
+        const updatedTasks = tasks.map(task => 
+            task.id === taskId ? { ...task, completed: !task.completed } : task
+        );
+        setTasks(updatedTasks);
+        localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+    };
     
     // Listen for storage changes to refresh tasks
     useEffect(() => {

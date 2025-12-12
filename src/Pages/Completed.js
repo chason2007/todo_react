@@ -4,13 +4,31 @@ import TaskCard from "./TaskCard";
 const Completed = () => {
     const [completedTasks, setCompletedTasks] = useState([]);
     
+    const loadCompletedTasks = () => {
+        const storedTasks = localStorage.getItem('tasks');
+        if (storedTasks) {
+            const tasks = JSON.parse(storedTasks);
+            const completed = tasks.filter(task => task.completed);
+            setCompletedTasks(completed);
+        } else {
+            fetch('/Tasks.json')
+                .then(res => res.json())
+                .then(data => {
+                    const completed = data.filter(task => task.completed);
+                    setCompletedTasks(completed);
+                });
+        }
+    };
+    
     useEffect(() => {
-        fetch('/Tasks.json')
-            .then(res => res.json())
-            .then(data => {
-                const completed = data.filter(task => task.completed);
-                setCompletedTasks(completed);
-            });
+        loadCompletedTasks();
+        
+        const handleStorageChange = () => {
+            loadCompletedTasks();
+        };
+        
+        window.addEventListener('storage', handleStorageChange);
+        return () => window.removeEventListener('storage', handleStorageChange);
     }, []);
     
     return (

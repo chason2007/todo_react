@@ -7,12 +7,19 @@ const Tasks = () => {
     
     useEffect(() => {
         if (resId) {
-            fetch('/Tasks.json')
-                .then(res => res.json())
-                .then(data => {
-                    const foundTask = data.find(t => t.id === resId);
-                    setTask(foundTask);
-                });
+            const storedTasks = localStorage.getItem('tasks');
+            if (storedTasks) {
+                const tasks = JSON.parse(storedTasks);
+                const foundTask = tasks.find(t => t.id === resId);
+                setTask(foundTask);
+            } else {
+                fetch('/Tasks.json')
+                    .then(res => res.json())
+                    .then(data => {
+                        const foundTask = data.find(t => t.id === resId);
+                        setTask(foundTask);
+                    });
+            }
         }
     }, [resId]);
     

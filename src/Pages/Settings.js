@@ -43,7 +43,7 @@ const Settings = () => {
                                 checked={!darkMode} 
                                 onChange={() => {
                                     setDarkMode(false);
-                                    localStorage.setItem('darkMode', false);
+                                    localStorage.setItem('darkMode', 'false');
                                     document.body.classList.remove('dark-mode');
                                 }}
                             />
@@ -56,7 +56,7 @@ const Settings = () => {
                                 checked={darkMode} 
                                 onChange={() => {
                                     setDarkMode(true);
-                                    localStorage.setItem('darkMode', true);
+                                    localStorage.setItem('darkMode', 'true');
                                     document.body.classList.add('dark-mode');
                                 }}
                             />
