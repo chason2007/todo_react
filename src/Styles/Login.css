@@ -1,7 +1,6 @@
 .login-container {
     padding: 32px 24px;
     background-color: #f9fafb;
-    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,31 +43,22 @@
 
 .login-button {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     background-color: #3b82f6;
     color: white;
     border: none;
     border-radius: 8px;
     font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+    font-weight: bold;
 }
 
 .login-button:hover {
     background-color: #2563eb;
 }
 
-.login-hint {
-    margin-top: 16px;
-    font-size: 14px;
-    color: #6b7280;
-    text-align: center;
-}
-
 /* Dark Mode Styles */
 body.dark-mode .login-container {
-    background-color: #1f2937;
+    background-color: black;
 }
 
 body.dark-mode .login-content {
@@ -76,15 +66,10 @@ body.dark-mode .login-content {
 }
 
 body.dark-mode .login-title {
-    color: #f9fafb;
+    color: white;
 }
 
 body.dark-mode .login-input {
-    background-color: #4b5563;
-    border-color: #6b7280;
+    background-color: white;
     color: #f9fafb;
-}
-
-body.dark-mode .login-hint {
-    color: #d1d5db;
 }
