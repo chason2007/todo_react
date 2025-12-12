@@ -1,39 +1,31 @@
-import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import '../Styles/Add.css';
 
 const Add = () => {
     const navigate = useNavigate();
-    const { register, handleSubmit, reset } = useForm();
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [dueDate, setDueDate] = useState('');
 
-    const onSubmit = async (data) => {
-        // Get existing tasks from localStorage or fetch from JSON
-        let tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
-        
-        if (tasks.length === 0) {
-            const response = await fetch('/Tasks.json');
-            tasks = await response.json();
-        }
-        
-        // Create new task
+    const handleSubmit = (e) => {
+        e.preventDefault();
         const newTask = {
-            id: String(Date.now()),
-            title: data.title,
-            description: data.description,
-            dueDate: data.dueDate,
+            id: Math.floor(Math.random() * 1000000),
+            title: title,
+            description: description,
+            dueDate: dueDate,
             completed: false
         };
+        const existingTasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+        existingTasks.push(newTask);
+        localStorage.setItem('tasks', JSON.stringify(existingTasks));
         
-        // Add to tasks array and save to localStorage
-        tasks.push(newTask);
-        localStorage.setItem('tasks', JSON.stringify(tasks));
+        alert('Task added!');
         
-        alert('Task added successfully!');
-        
-        // Reset form
-        reset();
-        
-        // Navigate to home to see the new task
+        setTitle('');
+        setDescription('');
+        setDueDate('');
         navigate('/');
     };
 
@@ -43,21 +35,25 @@ const Add = () => {
                 <div className="add-header">
                     <h1 className="add-title">Add New Task</h1>
                 </div>
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit}>
                     <div className="add-form">
                         <label className="form-label">Title:</label>
                         <input
                             type="text"
-                            {...register('title', { required: true })}
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
                             className="form-input"
+                            required
                         />
                     </div>
                     
                     <div className="add-form">
                         <label className="form-label">Description:</label>
                         <textarea
-                            {...register('description', { required: true })}
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
                             className="form-textarea"
+                            required
                         />
                     </div>
                     
@@ -65,8 +61,10 @@ const Add = () => {
                         <label className="form-label">Due Date:</label>
                         <input
                             type="date"
-                            {...register('dueDate', { required: true })}
+                            value={dueDate}
+                            onChange={(e) => setDueDate(e.target.value)}
                             className="form-input"
+                            required
                         />
                     </div>
                     
