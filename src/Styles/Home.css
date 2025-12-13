@@ -1,6 +1,6 @@
 .home-container {
     padding: 32px 24px;
-    background-color: #f9fafb;
+    background-color: black;
     min-height: 100vh;
 }
 
@@ -14,14 +14,14 @@
 }
 
 .home-title {
-    color: #111827;
+    color: #f9fafb;
     margin-bottom: 8px;
     font-size: 32px;
     font-weight: 700;
 }
 
 .home-subtitle {
-    color: #6b7280;
+    color: #d1d5db;
     font-size: 16px;
     margin: 0;
 }
@@ -32,15 +32,3 @@
     gap: 16px;
 }
 
-/* Dark Mode Styles */
-body.dark-mode .home-container {
-    background-color: black;
-}
-
-body.dark-mode .home-title {
-    color: #f9fafb;
-}
-
-body.dark-mode .home-subtitle {
-    color: #d1d5db;
-}

@@ -2,12 +2,12 @@
     border: none;
     border-radius: 16px;
     padding: 24px;
-    background-color: white;
+    background-color: #374151;
     cursor: pointer;
 }
 
 .task-card.completed {
-    background-color: lightgreen;
+    background-color: #065f46;
 }
 
 .task-card:hover {
@@ -16,34 +16,15 @@
 
 .task-card-title {
     margin: 0 0 12px 0;
-    color: black;
+    color: #f9fafb;
     font-size: 24px;
     font-weight: normal;
 }
 
 .task-card-due {
     margin: 0;
-    color: black;
+    color: #d1d5db;
     font-size: 18px;
     font-weight: 500;
 }
 
-/* Dark Mode */
-body.dark-mode .task-card {
-    background-color: #374151;
-}
-
-body.dark-mode .task-card.completed {
-    background-color: #065f46;
-}
-
-body.dark-mode .task-card:hover {
-}
-
-body.dark-mode .task-card-title {
-    color: #f9fafb;
-}
-
-body.dark-mode .task-card-due {
-    color: #d1d5db;
-}

@@ -1,21 +1,20 @@
+body {
+  background-color: black;
+  color: #f9fafb;
+}
+
 h1{
   font-weight: bold;
-  color: black;
+  color: white;
   text-align: center;
+  font-size: 48px;
+  margin: 0;
 }
 
 p{
   font-size: 16px;
   color: red;
   text-align: center;
-}
-
-
-
-h1{
-  font-size: 48px;
-  text-align: center;
-  margin: 0;
 }
 
 img{
@@ -25,26 +24,20 @@ img{
   height: 200px;
 }
 
-/* Dark Mode Styles */
-body.dark-mode {
-  background-color: black;
-  color: #f9fafb;
-}
-
-body.dark-mode .header {
+.header {
   background-color: black;
   border-bottom-color: red;
 }
 
-body.dark-mode .links a {
+.links a {
   color: #f9fafb;
 }
 
-body.dark-mode .links a.active {
+.links a.active {
   color: lightblue;
 }
 
-body.dark-mode .task-title {
+.task-title {
   color: white;
 }
 
