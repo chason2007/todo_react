@@ -38,18 +38,18 @@
 
 /* Dark Mode Styles */
 body.dark-mode .header {
-  background-color: #111827;
-  border-bottom-color: #374151;
+  background-color: black;
+  border-bottom-color: gray;
 }
 
 body.dark-mode .links a {
-  color: #f9fafb;
+  color: white;
 }
 
 body.dark-mode .links a.active {
-  color: #3b82f6;
+  color: lightblue;
 }
 
 body.dark-mode .logout-button {
-  color: #f9fafb;
+  color: white;
 }

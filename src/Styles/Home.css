@@ -34,7 +34,7 @@
 
 /* Dark Mode Styles */
 body.dark-mode .home-container {
-    background-color: #1f2937;
+    background-color: black;
 }
 
 body.dark-mode .home-title {

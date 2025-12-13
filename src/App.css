@@ -27,13 +27,13 @@ img{
 
 /* Dark Mode Styles */
 body.dark-mode {
-  background-color: #1f2937;
+  background-color: black;
   color: #f9fafb;
 }
 
 body.dark-mode .header {
-  background-color: #111827;
-  border-bottom-color: #374151;
+  background-color: black;
+  border-bottom-color: red;
 }
 
 body.dark-mode .links a {
@@ -42,4 +42,9 @@ body.dark-mode .links a {
 
 body.dark-mode .links a.active {
   color: #3b82f6;
+}
+
+b{
+  color: red;
+  font-size: 24px;
 }

@@ -1,10 +1,8 @@
-import { useOutletContext } from "react-router-dom";
 import { useState, useEffect } from "react";
 import TaskCard from "./TaskCard";
 import '../Styles/Home.css';
 
 const Home = () => {
-    const {data} = useOutletContext();
     const [tasks, setTasks] = useState([]);
     
     useEffect(() => {
@@ -24,13 +22,6 @@ const Home = () => {
         }
     }, []);
     
-    const handleToggleComplete = (taskId) => {
-        const updatedTasks = tasks.map(task => 
-            task.id === taskId ? { ...task, completed: !task.completed } : task
-        );
-        setTasks(updatedTasks);
-        localStorage.setItem('tasks', JSON.stringify(updatedTasks));
-    };
     
     // Listen for storage changes to refresh tasks
     useEffect(() => {

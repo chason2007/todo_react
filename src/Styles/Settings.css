@@ -14,46 +14,28 @@
 }
 
 .settings-title {
-    color: #111827;
+    color: black;
     margin-bottom: 8px;
     font-size: 32px;
     font-weight: 700;
 }
 
 .setting-item {
-    background-color: white;
+    background-color: lightblue;
     border-radius: 12px;
     padding: 24px;
     margin-bottom: 16px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .setting-label {
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 8px;
-    color: #1f2937;
-}
-
-.setting-description {
-    font-size: 14px;
-    color: #6b7280;
-    margin-bottom: 16px;
-}
-
-.toggle-button {
-    background-color: #3b82f6;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 12px 24px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
+    color: black;
 }
 
 .clear-button {
-    background-color: #ef4444;
+    background-color: red;
     color: white;
     border: none;
     border-radius: 8px;
@@ -61,82 +43,26 @@
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
-}
-
-.toggle-button:hover {
-    background-color: #2563eb;
-}
-
-.clear-button:hover {
-    background-color: #dc2626;
 }
 
 .setting-item:last-child {
     text-align: center;
 }
 
-.toggle-switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-}
-
-.toggle-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
-}
-
-input:checked + .slider {
-    background-color: #3b82f6;
-}
-
-input:checked + .slider:before {
-    transform: translateX(26px);
-}
-
 /* Dark Mode Styles */
 body.dark-mode .settings-container {
-    background-color: #1f2937;
+    background-color: black;
 }
 
 body.dark-mode .settings-title {
-    color: #f9fafb;
+    color: white;
 }
 
 body.dark-mode .setting-item {
-    background-color: #374151;
+    background-color: gray;
 }
 
 body.dark-mode .setting-label {
     color: #f9fafb;
 }
 
-body.dark-mode .setting-description {
-    color: #d1d5db;
-}
