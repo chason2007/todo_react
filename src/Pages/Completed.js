@@ -1,35 +1,9 @@
-import { useState, useEffect } from "react";
 import TaskCard from "./TaskCard";
+import { useTask } from '../context/TaskContext';
 
 const Completed = () => {
-    const [completedTasks, setCompletedTasks] = useState([]);
-    
-    const loadCompletedTasks = () => {
-        const storedTasks = localStorage.getItem('tasks');
-        if (storedTasks) {
-            const tasks = JSON.parse(storedTasks);
-            const completed = tasks.filter(task => task.completed);
-            setCompletedTasks(completed);
-        } else {
-            fetch('/Tasks.json')
-                .then(res => res.json())
-                .then(data => {
-                    const completed = data.filter(task => task.completed);
-                    setCompletedTasks(completed);
-                });
-        }
-    };
-    
-    useEffect(() => {
-        loadCompletedTasks();
-        
-        const handleStorageChange = () => {
-            loadCompletedTasks();
-        };
-        
-        window.addEventListener('storage', handleStorageChange);
-        return () => window.removeEventListener('storage', handleStorageChange);
-    }, []);
+    const { tasks } = useTask();
+    const completedTasks = tasks.filter(task => task.completed);
     
     return (
         <div>

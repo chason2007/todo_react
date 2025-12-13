@@ -1,40 +1,9 @@
-import { useState, useEffect } from "react";
 import TaskCard from "./TaskCard";
 import '../Styles/Home.css';
+import { useTask } from '../context/TaskContext';
 
 const Home = () => {
-    const [tasks, setTasks] = useState([]);
-    
-    useEffect(() => {
-        const storedTasks = localStorage.getItem('tasks');
-        const tasksCleared = localStorage.getItem('tasksCleared');
-        
-        if (storedTasks && !tasksCleared) {
-            setTasks(JSON.parse(storedTasks));
-        } else {
-            localStorage.removeItem('tasksCleared');
-            fetch('/Tasks.json')
-                .then(res => res.json())
-                .then(data => {
-                    setTasks(data);
-                    localStorage.setItem('tasks', JSON.stringify(data));
-                });
-        }
-    }, []);
-    
-    
-    // Listen for storage changes to refresh tasks
-    useEffect(() => {
-        const handleStorageChange = () => {
-            const storedTasks = localStorage.getItem('tasks');
-            if (storedTasks) {
-                setTasks(JSON.parse(storedTasks));
-            }
-        };
-        
-        window.addEventListener('storage', handleStorageChange);
-        return () => window.removeEventListener('storage', handleStorageChange);
-    }, []);
+    const { tasks } = useTask();
     
     return (
         <div className="home-container">

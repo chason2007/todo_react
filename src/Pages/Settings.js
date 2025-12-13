@@ -2,21 +2,14 @@ import { useState, useEffect } from 'react';
 import '../Styles/Settings.css';
 
 const Settings = () => {
-    const [darkMode, setDarkMode] = useState(() => {
-        return localStorage.getItem('darkMode') === 'true';
-    });
+    const [darkMode, setDarkMode] = useState(false);
 
     useEffect(() => {
         document.body.classList.toggle('dark-mode', darkMode);
     }, [darkMode]);
 
     const clearAllTasks = () => {
-        if (window.confirm('Are you sure you want to clear all tasks? This action cannot be undone.')) {
-            localStorage.removeItem('tasks');
-            localStorage.setItem('tasksCleared', 'true');
-            alert('All tasks have been cleared!');
-            window.location.reload();
-        }
+        alert('Tasks cannot be cleared without localStorage');
     };
 
     return (
@@ -36,7 +29,6 @@ const Settings = () => {
                                 checked={!darkMode} 
                                 onChange={() => {
                                     setDarkMode(false);
-                                    localStorage.setItem('darkMode', 'false');
                                     document.body.classList.remove('dark-mode');
                                 }}
                             />
@@ -49,7 +41,6 @@ const Settings = () => {
                                 checked={darkMode} 
                                 onChange={() => {
                                     setDarkMode(true);
-                                    localStorage.setItem('darkMode', 'true');
                                     document.body.classList.add('dark-mode');
                                 }}
                             />

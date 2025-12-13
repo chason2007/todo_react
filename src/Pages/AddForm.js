@@ -1,9 +1,11 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import "../Styles/Add.css";
+import { useTask } from '../context/TaskContext';
 
 const Add = () => {
   const navigate = useNavigate();
+  const { addTask } = useTask();
   const {
     register,
     handleSubmit,
@@ -25,10 +27,7 @@ const Add = () => {
       dueDate: data.dueDate,
       completed: false,
     };
-    const existingTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
-    existingTasks.push(newTask);
-    localStorage.setItem("tasks", JSON.stringify(existingTasks));
-
+    addTask(newTask);
     alert("Task added!");
     reset();
     navigate("/");
