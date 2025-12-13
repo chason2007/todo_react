@@ -27,7 +27,7 @@ const Tasks = () => {
     
     return(
         <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
-            <h1>{task.title}</h1>
+            <h1 className="task-title">{task.title}</h1>
             <div style={{ fontSize: '1.2rem', lineHeight: '1.6' }}>
                 <p><strong>Description:</strong> {task.description}</p>
                 <p><strong>Due Date:</strong> {task.dueDate}</p>

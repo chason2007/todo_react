@@ -41,7 +41,11 @@ body.dark-mode .links a {
 }
 
 body.dark-mode .links a.active {
-  color: #3b82f6;
+  color: lightblue;
+}
+
+body.dark-mode .task-title {
+  color: white;
 }
 
 b{

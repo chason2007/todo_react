@@ -33,7 +33,7 @@ const Completed = () => {
     
     return (
         <div>
-            <h1>Completed Tasks Page</h1> 
+            <h1 className="task-title">Completed Tasks Page</h1> 
             <p>View completed tasks here.</p>
             <div style={{display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))'}}>
                 {completedTasks.map(task => (
