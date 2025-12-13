@@ -23,7 +23,7 @@ const Tasks = () => {
         }
     }, [resId]);
     
-    if (!task) return <div>Loading...</div>;
+    if (!task) return <div><b>NOT FOUND</b></div>;
     
     return(
         <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
