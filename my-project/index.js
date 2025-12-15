@@ -5,19 +5,11 @@ const fs = require("fs");
 app.use(express.json());
 
 const jsonData = JSON.parse(fs.readFileSync(
-    "./Tasks.json"
+    "./Data.json"
 ))
-console.log(jsonData)
-
-//CRUD operations
-//1. C- Creation post
-//2. R- Read get
-//3. U- Update put and patch
-//4. D- Delete
-
 
 //get
-app.get("/api/v1/tasks", (req, res)=>{
+app.get("/api/v1/rest", (req, res)=>{
     res.status(200).json({
         status: "Sucessful",
         length: jsonData.length,
@@ -27,29 +19,29 @@ app.get("/api/v1/tasks", (req, res)=>{
     })
 });
 
-app.get("/api/v1/tasks/:id", (req, res)=>{
-    let id = req.params.id;
-    let task = jsonData.find((el)=>el.id===id);
-    if(!task){
-        res.status(404).json({
+app.get("/api/v1/rest/:id", (req, res)=>{
+    let id = parseInt(req.params.id);
+    let restaurant = jsonData.find((el)=>el.id===id);
+    if(!restaurant){
+        return res.status(404).json({
             status: "failed",
-            message: "check your task id"
+            message: "Restaurant not found"
         })
     }
     res.status(200).json({
         status: "Successful",
-        task
+        data: restaurant
     })
 })
 
 
 //post
-app.post("/api/v1/tasks", (req, res)=>{
+app.post("/api/v1/rest", (req, res)=>{
     const id = jsonData.length;
-    const task = Object.assign({id:id}, req.body);
-    jsonData.push(task);
+    const restaurant = Object.assign({id:id}, req.body);
+    jsonData.push(restaurant);
     fs.writeFile(
-        "./Tasks.json",
+        "./Data.json",
         JSON.stringify(jsonData),
         "utf-8",
         (err)=>{
@@ -60,25 +52,25 @@ app.post("/api/v1/tasks", (req, res)=>{
             }
             res.status(201).json({
                 status: "True",
-                data: task,
+                data: restaurant,
             })
         }
     )
 })
 
 //update
-app.put("/api/v1/tasks/:id", (req, res)=>{
+app.put("/api/v1/rest/:id", (req, res)=>{
     const id = parseInt(req.params.id);
-    const taskIndex = jsonData.findIndex((el)=>el.id === id);
-    if(taskIndex === -1){
+    const restaurantIndex = jsonData.findIndex((el)=>el.id === id);
+    if(restaurantIndex === -1){
         return res.status(404).json({
             status: "failed",
             message: "Task not found"
         })
     }
-    jsonData[taskIndex] = Object.assign({id: id}, req.body);
+    jsonData[restaurantIndex] = Object.assign({id: id}, req.body);
     fs.writeFile(
-        "./Tasks.json",
+        "./Data.json",
         JSON.stringify(jsonData),
         "utf-8",
         (err)=>{
@@ -89,7 +81,7 @@ app.put("/api/v1/tasks/:id", (req, res)=>{
             }
             res.status(200).json({
                 status: "Success",
-                data: jsonData[taskIndex],
+                data: jsonData[restaurantIndex],
             })
         }
     )
@@ -97,20 +89,32 @@ app.put("/api/v1/tasks/:id", (req, res)=>{
 
 
 //delete
-app.delete("/api/v1/tasks/:id", (req, res)=>{
-    const taskId = req.params.id;
-    const task = jsonData.find((el)=>el.id===taskId);
-    if(!task){
-        res.status(404).json({
+app.delete("/api/v1/rest/:id", (req, res)=>{
+    const restaurantId = parseInt(req.params.id);
+    const restaurantIndex = jsonData.findIndex((el)=>el.id===restaurantId);
+    if(restaurantIndex === -1){
+        return res.status(404).json({
             status: "Fail",
             message: "Please check the ID",
         })
     }
-    res.status(204).json({
-        status: "Success",
-        message: "<>Update successful",
-    })
+    jsonData.splice(restaurantIndex, 1);
+    fs.writeFile(
+        "./Data.json",
+        JSON.stringify(jsonData),
+        "utf-8",
+        (err)=>{
+            if(err){
+                return res.status(400).json({
+                    status:"Failed to write",
+                })
+            }
+            res.status(204).send()
+        }
+    )
 })
+
+
 app.listen(9000, ()=>
 {
     console.log("Server started successfully"); 
