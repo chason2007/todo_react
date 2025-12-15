@@ -9,7 +9,3 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use("/restaurants", restaurantRouter);
-app.use("/restaurants/:id", restaurantRouter);
-app.use("/restaurants/:id/reviews", restaurantRouter);
-app.use("/restaurants/:id/reviews/:reviewId", restaurantRouter);

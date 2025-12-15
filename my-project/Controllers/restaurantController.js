@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 const fs = require("fs");
 const jsonData = JSON.parse(fs.readFileSync("./Data.json"));
 
@@ -28,6 +29,7 @@ exports.getRestaurantById = (req, res) => {
   let restaurant = null;
   for (let i = 0; i < jsonData.length; i++) {
     let items = jsonData[i].card.card.itemCards;
+    // eslint-disable-next-line eqeqeq
     restaurant = items.find((el) => el.card.info.id == id);
     if (restaurant) break;
   }
