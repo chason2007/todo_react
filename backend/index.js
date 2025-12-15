@@ -1,4 +1,3 @@
-const { log } = require("console");
 const express = require("express");
 const app = express();
 const fs = require("fs");
@@ -101,7 +100,7 @@ app.put("/api/v1/tasks/:id", (req, res)=>{
 //delete
 app.delete("/api/v1/tasks/:id", (req, res)=>{
     const taskId = req.params.id;
-    const task = jsonData.find((el)=>el.id==taskId);
+    const task = jsonData.find((el)=>el.id===taskId);
     if(!task){
         res.status(404).json({
             status: "Fail",
@@ -115,6 +114,5 @@ app.delete("/api/v1/tasks/:id", (req, res)=>{
 })
 app.listen(9000, ()=>
 {
-    console.log("Server started successfully");
-    
+    console.log("Server started successfully"); 
 })
