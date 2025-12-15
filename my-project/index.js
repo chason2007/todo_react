@@ -6,6 +6,11 @@ app.use(express.json());
 
 const jsonData = JSON.parse(fs.readFileSync("./Data.json"));
 
+app.use((req, res, next) => {
+  const now = new Date();
+  req.requestTimeOfHit = now.toLocaleString();
+  next();
+})
 
 //controllers
 const getAllRestaurants = (req, res) => {
