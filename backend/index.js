@@ -2,6 +2,7 @@ const { log } = require("console");
 const express = require("express");
 const app = express();
 const fs = require("fs");
+app.use(express.json);
 
 const jsonData = JSON.parse(fs.readFileSync(
     "./Tasks.json"
@@ -16,6 +17,7 @@ console.log(jsonData)
 
 
 //api
+//get
 app.get("/api/v1/tasks", (req, res)=>{
     res.status(200).json({
         status: "Sucessful",
@@ -25,6 +27,30 @@ app.get("/api/v1/tasks", (req, res)=>{
         }
     })
 });
+
+//post
+app.post("/api/v1/tasks", (req, res)=>{
+    const id = jsonData.length;
+    const task = Object.assign({id:id}, req.body);
+    jsonData.push(task);
+    fs.writeFile(
+        "/Tasks.json",
+        JSON.stringify(jsonData),
+        "utf-8",
+        (err)=>{
+            if(err){
+                res.status(400).json({
+                    status:"Failed to write",
+                })
+            }
+            res.status(201).json({
+                status: "True",
+                data: task,
+            })
+        }
+    )
+    console.log(req.body);
+})
 
 //retrieve single object data
 app.get("/api/v1/tasks/:id", (req, res)=>{
