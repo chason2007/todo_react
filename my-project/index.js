@@ -91,6 +91,15 @@ app.get("/api/v1/rest/:id", (req, res) => {
   });
 });
 
+//combined routes
+const restaurantRouter = express.Router();
+restaurantRouter.route("/").get(getAllRestaurants).post(createRestaurant);
+restaurantRouter
+.route("/:id")
+.get(getRestaurantById)
+.patch(updateRestaurant)
+.delete(deleteRestaurant);
+
 app.listen(3001, () => {
   console.log("Server started successfully on port 3001");
 });
