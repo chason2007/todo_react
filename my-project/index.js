@@ -6,9 +6,15 @@ app.use(express.json());
 
 const jsonData = JSON.parse(fs.readFileSync("./Data.json"));
 
+//middleware
 app.use((req, res, next) => {
   const now = new Date();
   req.requestTimeOfHit = now.toLocaleString();
+  next();
+})
+
+app.use((req, res, next) => {
+  console.log("Hello from the middleware");
   next();
 })
 
